@@ -12,5 +12,8 @@ public class Main {
         int y = userY.nextInt();
 
         System.out.println("Addition with your numbers results = " + (x + y));
+
+        System.out.println("Test Branch");
+        System.out.println("Test Branch2");
     }
 }

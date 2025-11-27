@@ -4,21 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.print("Add your first number:");
-        Scanner userX = new Scanner(System.in);
-        int x = userX.nextInt();
-        System.out.print("Add your second number:");
-        Scanner userY = new Scanner(System.in);
-        int y = userY.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Add Price: ");
+        int price = Integer.parseInt(scanner.nextLine());
+        System.out.print("Add Discount: ");
+        int discount = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Addition with your numbers results = " + (x + y));
+        System.out.println("Price before discount: " + price);
+        System.out.println("Discount added: " + discount +"%" );
 
-        System.out.println("Test Branch");
-        System.out.println("Test Branch2");
-        System.out.println("Now i am making a change in feature-branch");
+        int discountedPrice = price - ((price * discount) / 100);
 
+        System.out.print("Price with discount applied is: " + discountedPrice);
 
-        System.out.println("Testing again to understand");
-        System.out.println("One more test, i am on main doing this");
     }
 }

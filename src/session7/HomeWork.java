@@ -70,7 +70,7 @@ public class HomeWork {
         int result = date1.getDayOfMonth() - date2.getDayOfMonth();
         System.out.println("Difference of " + result + " days.");
     }
-    public static void  isValidDate(){
+    public static void isValidDate(){
         System.out.print("Add a date: ");
         String date = scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -137,6 +137,5 @@ public class HomeWork {
         System.out.println("The time span given as " + hours + " hours," + minutes + " minutes," + seconds + " seconds.");
          //System.out.println(parse.getClass());
 
-    }
     }
 }

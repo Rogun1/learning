@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class BankAccount {
     private String accountHolderName;
     private double accountNumber;
-    private int balance;
+    private double balance;
 
-    public BankAccount(String accountHolderName,double accountNumber,int balance){
+    public BankAccount(String accountHolderName,double accountNumber,double balance){
         this.accountHolderName = accountHolderName;
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -30,15 +30,15 @@ public class BankAccount {
         this.accountNumber = accountNumber;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public void deposit(int sum){
+    public void deposit(double sum){
         
         if (sum <= 0){
             System.out.println("The amount can't be negative or 0");
@@ -49,7 +49,7 @@ public class BankAccount {
         }
     }
 
-    public void withdraw(int sum){
+    public void withdraw(double sum){
         if (balance < sum) {
             System.out.println("Insufficient funds to withdraw");
         } else if (sum <= 0) {
@@ -66,6 +66,7 @@ public class BankAccount {
         System.out.println("Account Number: " + accountNumber);
         System.out.println("Account Balance: " + balance);
     }
+
 }
 
 class BankMenu{
@@ -73,7 +74,8 @@ class BankMenu{
         System.out.println("1. Deposit money");
         System.out.println("2. Withdraw money");
         System.out.println("3. See balance");
-        System.out.println("4. Exit");
+        System.out.println("4. Transfer Funds");
+        System.out.println("5. Exit");
         System.out.print("Choose: ");
     }
 }
@@ -82,6 +84,7 @@ class BankManager{
     public void main(String[] args) {
         boolean openMenu = true;
         BankAccount account1 = new BankAccount("Raul", 0, 0);
+        BankAccount account2 = new BankAccount("Alina", 0,0);
         double randomAccountNumber = Math.random();
         account1.setAccountNumber(randomAccountNumber);
         Scanner scanner = new Scanner(System.in);
@@ -109,7 +112,22 @@ class BankManager{
                     System.out.println(account1.getBalance());
                     BankMenu.menu();
                 }
-                case 4 -> openMenu = false;
+                case 4 ->{
+                    System.out.print("Add the sum to transfer: ");
+                    double sumToTransfer = scanner.nextInt();
+                    if (account1.getBalance() < sumToTransfer || sumToTransfer <= 0){
+                        System.out.println("Not enough funds and it can't be 0 or negative");
+                        BankMenu.menu();
+                    }else {
+                        System.out.println(account2.getAccountHolderName() + " before transfer " + account2.getBalance());
+                        account1.withdraw(sumToTransfer);
+                        account2.deposit(sumToTransfer);
+                        System.out.println("You successfully transferred " + sumToTransfer + " to " + account2.getAccountHolderName());
+                        System.out.println(account2.getAccountHolderName() + " after transfer " + account2.getBalance());
+                        BankMenu.menu();
+                    }
+                }
+                case 5 -> openMenu = false;
                 default -> BankMenu.menu();
             }
         }while (openMenu);

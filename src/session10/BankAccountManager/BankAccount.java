@@ -45,7 +45,7 @@ public class BankAccount {
         }else{
             balance += sum;
             System.out.println("You added " + sum + " to your balance");
-            System.out.println(getBalance());
+            //System.out.println(getBalance());
         }
     }
 
@@ -57,7 +57,7 @@ public class BankAccount {
         }else {
             balance -= sum;
             System.out.println("You withdraw " + sum + " from your balance.");
-            System.out.println(getBalance());
+            //System.out.println(getBalance());
         }
     }
 
@@ -83,10 +83,8 @@ class BankMenu{
 class BankManager{
     public void main(String[] args) {
         boolean openMenu = true;
-        BankAccount account1 = new BankAccount("Raul", 0, 0);
-        BankAccount account2 = new BankAccount("Alina", 0,0);
-        double randomAccountNumber = Math.random();
-        account1.setAccountNumber(randomAccountNumber);
+        BankAccount account1 = new BankAccount("Raul", Math.random(), 0);
+        BankAccount account2 = new BankAccount("Alina", Math.random(),0);
         Scanner scanner = new Scanner(System.in);
         BankMenu.menu();
 

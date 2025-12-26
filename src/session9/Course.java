@@ -14,8 +14,8 @@ public class Course {
         this.description = description;
     }
 
-    public void assignProfessor(Professor professor) {
-        teacher = professor;
+    public void assignProfessor(Professor person) {
+        teacher = person;
     }
 
     public void courseDetails(){

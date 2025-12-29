@@ -28,7 +28,7 @@ public class StartingProject {
         List<Person> managers = new ArrayList<>(Arrays.asList());
 
         //Construction
-        Construction building = new Construction();
+//        Construction building = new Construction();
 
         //Resources
         Resource brick = new Resource("brick", 2, 50);
@@ -96,28 +96,29 @@ public class StartingProject {
                     checkTeam(teams);
                     System.out.println();
 
-                    // setting a resource to building ( check if already exists )
-                    building.setAvailabeResources(brick);
-                    building.setAvailabeResources(wood);
-                    building.setAvailabeResources(metal);
-                    // getting the resources from building
-                    System.out.println("Available resources: ");
-                    building.getAvailabeResources();
+                    brick.setAvailable(brick);
+                    wood.setAvailable(wood);
+                    metal.setAvailable(metal);
+                    brick.getAvailable();
+                    wood.getAvailable();
+                    metal.getAvailable();
                     System.out.println();
 
                     brick.setQuantity(30);
                     System.out.println();
-                    System.out.print("Available resources: ");
-                    building.getAvailabeResources();
+                    brick.getAvailable();
+                    wood.getAvailable();
+                    metal.getAvailable();
                     System.out.println();
                     System.out.print("Quantity needed for " + brick.getName() + " : " + brick.getQuantityNeeded());
                     System.out.println();
-                    brick.setQuantityNeeded(120);
+                    wood.setQuantityNeeded(120);
                     System.out.println();
-                    System.out.print("Quantity needed for " + brick.getName() + " : " + brick.getQuantityNeeded());
+                    System.out.print("Quantity needed for " + brick.getName() + " : " + wood.getQuantityNeeded());
                     System.out.println();
-                    System.out.print("Available resources: ");
-                    building.getAvailabeResources();
+                    brick.getAvailable();
+                    wood.getAvailable();
+                    metal.getAvailable();
                     System.out.println();
 
                     System.out.print("Do you want to send an email to employers? y/n:");

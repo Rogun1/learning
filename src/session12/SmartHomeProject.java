@@ -9,7 +9,7 @@ public class SmartHomeProject {
         User userAnca = new User("Anca");
         User userMerc = new User("Merc");
         //Simulating outside temperature
-        int outsideTemperature = 19;
+        int outsideTemperature = 17;
 
         homeRaul.setHomeOnwer(userRaul);
         homeRaul.setFamilyMember(userAlex);

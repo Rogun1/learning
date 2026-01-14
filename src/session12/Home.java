@@ -12,6 +12,7 @@ public class Home {
     }
     private List<Device> devices;
     private Room livingRoom;
+    private static int energySaved;
 
     public Home(){
         users = new ArrayList<>();
@@ -59,15 +60,18 @@ public class Home {
 
     public void nightMode(){
         livingRoom.setLightsIntensity(10);
-        for (Device device: devices){
-            if (device.getName().equals("Door")){
-                if (device.isOpened()){
-                    device.close();
-                }
-            }
-        }
-        livingRoom.setTemperature(24);
-        System.out.println();
+        livingRoom.closeDoors();
+        livingRoom.setTemperature(22);
+    }
+
+    public int fullEnergyConsumptionRaport(){
+        return livingRoom.getLightsConsumption() + livingRoom.getThermostatConsumption();
+    }
+
+    public void energySaving(){
+        //Simulate that there are no people in livingroom for more then 10 minutes.
+        //I don't have anything to keep the number of users in one room so i won't use if statement to check that. just simulate
+        livingRoom.setLightsIntensity(0);
     }
 }
 

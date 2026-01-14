@@ -18,9 +18,10 @@ public abstract class Device {
 
 
 class Lights extends Device{
-    private int intensity;
+    private static int intensity = 30;
     private int lightsNumber;
     private boolean isOpen;
+    private static int energyConsumed = 0;
 
     Lights(String name, int lightsNumber) {
         super(name);
@@ -43,13 +44,23 @@ class Lights extends Device{
         return lightsNumber;
     }
 
+    public void setEnergyConsumed(int energyConsumed) {
+        Lights.energyConsumed += energyConsumed;
+    }
+
+    public int getTotalEnergyConsumed() {
+        return energyConsumed;
+    }
+
     @Override
     public void open(){
+        energyConsumed += 20;
         System.out.println("Lights opens");
     }
 
     @Override
     public void close(){
+        intensity += 0;
         System.out.println("Lights closes");
     }
 
@@ -132,6 +143,7 @@ class Windows extends Device{
 class Thermostat extends Device{
     private int temperature;
     private boolean isOpen;
+    private static int energyConsumed = 0;
 
     Thermostat(String name, int temperature){
         super(name);
@@ -146,8 +158,17 @@ class Thermostat extends Device{
         this.temperature = temperature;
     }
 
+    public int getTotalEnergyComsumption() {
+        return energyConsumed;
+    }
+
+    public void setEnergyConsumed(int energyConsumed) {
+        Thermostat.energyConsumed += energyConsumed;
+    }
+
     @Override
     public void open(){
+        energyConsumed += 30;
         System.out.println("Thermostat opens");
         isOpen = true;
     }

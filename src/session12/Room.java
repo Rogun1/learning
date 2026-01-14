@@ -45,4 +45,13 @@ public class Room {
     public void setLightsIntensity(int intensity) {
         lights.setIntensity(intensity);
     }
+    public void closeDoors(){
+        doors.close();
+    }
+    public int getLightsConsumption(){
+        return lights.getTotalEnergyConsumed();
+    }
+    public int getThermostatConsumption(){
+        return thermostat.getTotalEnergyComsumption();
+    }
 }

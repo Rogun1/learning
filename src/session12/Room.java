@@ -15,43 +15,25 @@ public class Room {
         this.thermostat = thermostat;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public int getLights(){
-        return lights.getLightsNumber();
-    }
-
-    public int getWindows(){
-        return windows.getWindowsNumber();
-    }
-
-    public int getDoors(){
-        return doors.getDoorsNumber();
-    }
-
     public int getTemperature(){
         return thermostat.getTemperature();
     }
-
     public void setTemperature(int temperature){
         thermostat.setTemperature(temperature);
     }
-
     public int getLightsIntensity(){
         return lights.getIntensity();
     }
     public void setLightsIntensity(int intensity) {
         lights.setIntensity(intensity);
     }
-    public void closeDoors(){
-        doors.close();
+    public void closeRoomDoors(){
+        doors.closeDoors();
     }
-    public int getLightsConsumption(){
-        return lights.getTotalEnergyConsumed();
+    public int getRoomLightsConsumption(){
+        return lights.getLightsEnergyConsuming();
     }
     public int getThermostatConsumption(){
-        return thermostat.getTotalEnergyComsumption();
+        return thermostat.getThermostatEnergyConsuming();
     }
 }

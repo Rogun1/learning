@@ -1,7 +1,17 @@
 package session12;
 
-public abstract class Device {
+public class Device implements Lights,Doors,Windows,Thermostat{
     private String name;
+    private static int lightsIntensity = 30;
+    private static int lightsEnergyConsuming = 15;
+    private static int doorNumber = 0;
+    private static int windowsNumber = 0;
+    private static int thermostatEnergyConsuming = 25;
+    private static int thermostatTemperature = 0;
+    private boolean isLightsOpen;
+    private boolean isDoorsOpen;
+    private boolean isWindowsOpen;
+    private boolean isThermostatOpen;
 
     Device(String name){
         this.name = name;
@@ -11,176 +21,149 @@ public abstract class Device {
         return name;
     }
 
-    public abstract void open();
-    public abstract void close();
-    public abstract boolean isOpened();
-}
-
-
-class Lights extends Device{
-    private static int intensity = 30;
-    private int lightsNumber;
-    private boolean isOpen;
-    private static int energyConsumed = 0;
-
-    Lights(String name, int lightsNumber) {
-        super(name);
-        this.lightsNumber = lightsNumber;
-    }
-
+    @Override
     public void setIntensity(int intensity) {
-        this.intensity = intensity;
-    }
-
-    public int getIntensity(){
-        return intensity;
-    }
-
-    public void setLightsNumber(int lightsNumber) {
-        this.lightsNumber = lightsNumber;
-    }
-
-    public int getLightsNumber() {
-        return lightsNumber;
-    }
-
-    public void setEnergyConsumed(int energyConsumed) {
-        Lights.energyConsumed += energyConsumed;
-    }
-
-    public int getTotalEnergyConsumed() {
-        return energyConsumed;
+        lightsIntensity = intensity;
     }
 
     @Override
-    public void open(){
-        energyConsumed += 20;
-        System.out.println("Lights opens");
+    public int getIntensity() {
+        return lightsIntensity;
+    }
+
+    public int getLightsEnergyConsuming() {
+        return lightsEnergyConsuming;
     }
 
     @Override
-    public void close(){
-        intensity += 0;
-        System.out.println("Lights closes");
+    public void setDoorsNumber(int doorNumber) {
+        this.doorNumber += doorNumber;
     }
 
     @Override
-    public boolean isOpened(){
-        return isOpen;
-    }
-}
-
-class Doors extends Device{
-    private int doorsNumber;
-    private boolean isOpen;
-
-    Doors(String name, int doorsNumber) {
-        super(name);
-        this.doorsNumber = doorsNumber;
-    }
-
-    @Override
-    public void open(){
-        System.out.println("Door opens");
-        isOpen = true;
-    }
-
-    @Override
-    public void close(){
-        System.out.println("Door closes");
-        isOpen = false;
-    }
-
-    public void setDoorsNumber(int doorsNumber) {
-        this.doorsNumber = doorsNumber;
-    }
-
     public int getDoorsNumber() {
-        return doorsNumber;
+        return doorNumber;
     }
 
     @Override
-    public boolean isOpened(){
-        return isOpen;
-    }
-}
-
-class Windows extends Device{
-    private int windowsNumber;
-    private boolean isOpen;
-
-    Windows(String name, int windowsNumber) {
-        super(name);
-        this.windowsNumber = windowsNumber;
-    }
-
     public void setWindowsNumber(int windowsNumber) {
-        this.windowsNumber = windowsNumber;
+        this.windowsNumber += windowsNumber;
     }
 
+    @Override
     public int getWindowsNumber() {
         return windowsNumber;
     }
 
     @Override
-    public void open(){
-        System.out.println("Window opens");
-        isOpen = true;
+    public void setTemperature(int temperature) {
+        thermostatTemperature += temperature;
     }
 
     @Override
-    public void close(){
-        System.out.println("Window closes");
-        isOpen = false;
+    public int getTemperature() {
+        return thermostatTemperature;
+    }
+
+    public int getThermostatEnergyConsuming() {
+        return thermostatEnergyConsuming;
     }
 
     @Override
-    public boolean isOpened(){
-        return isOpen;
+    public void openLights() {
+        System.out.println("Lights opened");
+        isLightsOpen = true;
+        lightsIntensity = 30;
+        lightsEnergyConsuming += 10;
+    }
+
+    public boolean isLightsOpen() {
+        return isLightsOpen;
+    }
+
+    @Override
+    public void openDoors() {
+        System.out.println("Doors opened");
+        isDoorsOpen = true;
+    }
+
+    public boolean isDoorsOpen() {
+        return isDoorsOpen;
+    }
+
+    @Override
+    public void openWindows() {
+        System.out.println("Windows opened");
+        isWindowsOpen = true;
+    }
+
+    public boolean isWindowsOpen() {
+        return isWindowsOpen;
+    }
+
+    @Override
+    public void openThermostat() {
+        System.out.println("Thermostats opened");
+        isThermostatOpen = true;
+        thermostatEnergyConsuming += 18;
+    }
+
+    public boolean isThermostatOpen() {
+        return isThermostatOpen;
+    }
+
+    @Override
+    public void closeLights() {
+        System.out.println("Lights closed");
+        isLightsOpen = false;
+        lightsIntensity = 0;
+    }
+
+    @Override
+    public void closeDoors() {
+        System.out.println("Doors closed");
+        isDoorsOpen = false;
+    }
+
+    @Override
+    public void closeWindows() {
+        System.out.println("Windows closed");
+        isWindowsOpen = false;
+    }
+
+    @Override
+    public void closeThermostat() {
+        System.out.println("Thermostats closed");
+        isThermostatOpen = false;
     }
 }
 
-class Thermostat extends Device{
-    private int temperature;
-    private boolean isOpen;
-    private static int energyConsumed = 0;
+interface Lights{
+    public void setIntensity(int intensity);
+    public int getIntensity();
+    public void openLights();
+    public void closeLights();
+    public int getLightsEnergyConsuming();
+}
 
-    Thermostat(String name, int temperature){
-        super(name);
-        this.temperature = temperature;
-    }
+interface Doors{
+    public void setDoorsNumber(int doorsNumber);
+    public int getDoorsNumber();
+    public void openDoors();
+    public void closeDoors();
+}
 
-    public int getTemperature() {
-        return temperature;
-    }
+interface Windows{
+    public void setWindowsNumber(int windowsNumber);
+    public int getWindowsNumber();
+    public void openWindows();
+    public void closeWindows();
+}
 
-    public void setTemperature(int temperature) {
-        this.temperature = temperature;
-    }
-
-    public int getTotalEnergyComsumption() {
-        return energyConsumed;
-    }
-
-    public void setEnergyConsumed(int energyConsumed) {
-        Thermostat.energyConsumed += energyConsumed;
-    }
-
-    @Override
-    public void open(){
-        energyConsumed += 30;
-        System.out.println("Thermostat opens");
-        isOpen = true;
-    }
-
-    @Override
-    public void close(){
-        System.out.println("Thermostat closes");
-        isOpen = false;
-    }
-
-    @Override
-    public boolean isOpened(){
-        return isOpen;
-    }
+interface Thermostat{
+    public int getTemperature();
+    public void setTemperature(int temperature);
+    public void openThermostat();
+    public void closeThermostat();
+    public int getThermostatEnergyConsuming();
 }

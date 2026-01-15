@@ -21,32 +21,26 @@ public class SmartHomeProject {
         System.out.println();
         System.out.println(userRaul.getAccesLevel());
 
-        Lights lights = new Lights("Light", 10);
-        Doors doors = new Doors("Door", 3);
-        Windows windows = new Windows("Windows", 8);
-        Thermostat thermostat = new Thermostat("Thermostat 1", 30);
+        Device lights = new Device("Light");
+        Device doors = new Device("doors");
+        Device windows = new Device("windows");
+        Device thermostats = new Device("thermostat");
 
         homeRaul.setDevice(lights);
         homeRaul.setDevice(windows);
         homeRaul.setDevice(doors);
-        homeRaul.setDevice(thermostat);
-
+        homeRaul.setDevice(thermostats);
         homeRaul.getDevices();
 
-        Room livingRoom = new Room("Living Room",lights,windows,doors,thermostat);
+        Room livingRoom = new Room("Living Room",lights,windows,doors,thermostats);
 
         System.out.println();
-        System.out.println(livingRoom.getLights());
-
         homeRaul.setLivingRoom(livingRoom);
-        System.out.println(homeRaul.getLivingRoom().getName());
-        System.out.println("Living room windiws: " + livingRoom.getWindows());
-        System.out.println("Thermostat temperature: " + thermostat.getTemperature());
 
-        System.out.println("Living Room lights intensity: " + livingRoom.getLightsIntensity());
+        //System.out.println("Living Room lights intensity: " + livingRoom.getLightsIntensity());
         //homeRaul.nightMode();
         System.out.println("Living Room lights intensity: " + livingRoom.getLightsIntensity());
-        System.out.println("Thermostat temperature: " + thermostat.getTemperature());
+        System.out.println("Thermostat temperature: " + thermostats.getTemperature());
 
         System.out.println("Outside temperature: " + outsideTemperature);
         if (outsideTemperature < 20){
@@ -54,38 +48,29 @@ public class SmartHomeProject {
             System.out.println("Temperature went under 20 degrees, set the temperature to: " + livingRoom.getTemperature());
         }
 
-        System.out.println("Thermostat temperature: " + thermostat.getTemperature());
+        System.out.println("Thermostat temperature: " + thermostats.getTemperature());
         //Individual energy consumtion check
-        System.out.println("Lights consumption: " + lights.getTotalEnergyConsumed());
-        System.out.println("Thermostat consumption: " + thermostat.getTotalEnergyComsumption());
-        lights.open();
-        thermostat.open();
-        System.out.println("Lights consumption: " + lights.getTotalEnergyConsumed());
-        System.out.println("Thermostat consumption: " + thermostat.getTotalEnergyComsumption());
+        System.out.println("Lights consumption: " + lights.getLightsEnergyConsuming());
+        System.out.println("Thermostat consumption: " + thermostats.getThermostatEnergyConsuming());
+        lights.openLights();
+        thermostats.openThermostat();
+        System.out.println("Lights consumption: " + lights.getLightsEnergyConsuming());
+        System.out.println("Thermostat consumption: " + thermostats.getThermostatEnergyConsuming());
         //Full room energy check
-        System.out.println("Full room consumption: " + homeRaul.fullEnergyConsumptionRaport());
+        System.out.println("Full consumption report 1: " + homeRaul.fullEnergyConsumptionRaport());
 
-        if (lights.isOpened()){
-            lights.setEnergyConsumed(20);
-        }
-        if (thermostat.isOpened()){
-            thermostat.setEnergyConsumed(35);
-        }
+        lights.openLights();
+        thermostats.openThermostat();
         System.out.println("After opening");
-        System.out.println("Lights consumption: " + lights.getTotalEnergyConsumed());
-        System.out.println("Thermostat consumption: " + thermostat.getTotalEnergyComsumption());
+        System.out.println("Lights consumption: " + lights.getLightsEnergyConsuming());
+        System.out.println("Thermostat consumption: " + thermostats.getThermostatEnergyConsuming());
         //Full room energy check
-        System.out.println("Full room consumption: " + homeRaul.fullEnergyConsumptionRaport());
+        System.out.println("Full consumption report 2: " + homeRaul.fullEnergyConsumptionRaport());
 
         //Simulate that there are no people in living room for more then 10 minutes.
         System.out.println("There is no one in living room, recommend energy saving mode");
+        System.out.println("Living Room lights intensity before energySaving: " + livingRoom.getLightsIntensity());
         homeRaul.energySaving();
-        System.out.println("Living Room lights intensity: " + livingRoom.getLightsIntensity());
-
-        //Simulating report
-        System.out.println("Total lights energy consumption: " + lights.getTotalEnergyConsumed());
-        System.out.println("Total thermostat energy consumption: " + thermostat.getTotalEnergyComsumption());
-        //I can't keep track of savings, i don't have any idea here.
-        System.out.println("Total energy consumption: " + homeRaul.fullEnergyConsumptionRaport());
+        System.out.println("Living Room lights intensity after energySaving: " + livingRoom.getLightsIntensity());
     }
 }

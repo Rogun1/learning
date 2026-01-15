@@ -60,12 +60,12 @@ public class Home {
 
     public void nightMode(){
         livingRoom.setLightsIntensity(10);
-        livingRoom.closeDoors();
+        livingRoom.closeRoomDoors();
         livingRoom.setTemperature(22);
     }
 
     public int fullEnergyConsumptionRaport(){
-        return livingRoom.getLightsConsumption() + livingRoom.getThermostatConsumption();
+        return livingRoom.getRoomLightsConsumption() + livingRoom.getThermostatConsumption();
     }
 
     public void energySaving(){

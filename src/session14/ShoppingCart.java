@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ShoppingCart{
     private List<String> shoppingCart;
-    private static LinkedHashMap<String, Integer> frequentlyBothList = new LinkedHashMap<>();
+    private static TreeMap<String, Integer> frequentlyBothList = new TreeMap<>();
 
     ShoppingCart(){
         shoppingCart = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ShoppingCart{
         clearItemsInCart();
     }
 
-    public static LinkedHashMap<String, Integer> bought(){
+    public static TreeMap<String, Integer> bought(){
         return frequentlyBothList;
     }
 
@@ -47,7 +47,7 @@ public class ShoppingCart{
         int topFrequentyBouth = 3;
         for (int i = 0; i < topFrequentyBouth; i++) {
             Map.Entry<String, Integer> entry = entries.get(i);
-            System.out.print(entry.getKey()+ ",");
+            System.out.println(entry.getKey() + "," + entry.getValue());
         }
     }
 
@@ -59,34 +59,34 @@ public class ShoppingCart{
 
 class Magazine{
     static void main(String[] args) {
-        ShoppingCart userItemsCart = new ShoppingCart();
-        ShoppingCart userItemsCart1 = new ShoppingCart();
+        ShoppingCart userShoppingCart = new ShoppingCart();
+        ShoppingCart userShoppingCart1 = new ShoppingCart();
 
-        userItemsCart.addItem("19238");
-        userItemsCart.addItem("38471");
-        userItemsCart.addItem("38471");
-        userItemsCart.addItem("38471");
-        userItemsCart.addItem("19238");
-        userItemsCart.addItem("19238");
-        userItemsCart.addItem("19238");
-        userItemsCart.addItem("19238");
-        System.out.println("First user items in shopping cart before buy: " + userItemsCart.seeItemsInCart());
-        userItemsCart1.addItem("44381");
-        userItemsCart1.addItem("44381");
-        userItemsCart1.addItem("85721");
-        userItemsCart1.addItem("44381");
-        userItemsCart1.addItem("85721");
-        userItemsCart1.addItem("85721");
-        userItemsCart1.addItem("38471");
-        System.out.println("Second user items in shopping cart before buy: " + userItemsCart1.seeItemsInCart());
+        userShoppingCart.addItem("38471");
+        userShoppingCart.addItem("38471");
+        userShoppingCart.addItem("38471");
+        userShoppingCart.addItem("99238");
+        userShoppingCart.addItem("99238");
+        userShoppingCart.addItem("99238");
+        userShoppingCart.addItem("99238");
+        userShoppingCart.addItem("99238");
+        System.out.println("First user items in shopping cart before buy: " + userShoppingCart.seeItemsInCart());
+        userShoppingCart1.addItem("44381");
+        userShoppingCart1.addItem("44381");
+        userShoppingCart1.addItem("85721");
+        userShoppingCart1.addItem("44381");
+        userShoppingCart1.addItem("85721");
+        userShoppingCart1.addItem("85721");
+        userShoppingCart1.addItem("38471");
+        System.out.println("Second user items in shopping cart before buy: " + userShoppingCart1.seeItemsInCart());
 
-        userItemsCart.buy();
-        userItemsCart1.buy();
+        userShoppingCart.buy();
+        userShoppingCart1.buy();
         System.out.println("Bought " + ShoppingCart.bought());
-        System.out.println("First user items in shopping cart after buy: " + userItemsCart.seeItemsInCart());
-        System.out.println("Second user items in shopping cart after buy: " + userItemsCart1.seeItemsInCart());
+        System.out.println("First user items in shopping cart after buy: " + userShoppingCart.seeItemsInCart());
+        System.out.println("Second user items in shopping cart after buy: " + userShoppingCart1.seeItemsInCart());
         System.out.println("Bought " + ShoppingCart.bought());
-        System.out.print("Frequent both: ");
+        System.out.println("Frequent both: ");
         ShoppingCart.frequentyBoth();
 
     }
